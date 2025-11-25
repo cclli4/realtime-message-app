@@ -60,7 +60,6 @@ services:
 
   gateway:
     build: .
-    container_name: chat-gateway
     command: ["./message-app"]
     env_file: .env
     restart: unless-stopped
@@ -73,9 +72,9 @@ services:
         condition: service_started
       mqtt-broker:
         condition: service_healthy
-    ports:
-      - "3000:3000"
-      - "9000:9000"
+    expose:
+      - "3000"
+      - "9000"
     volumes:
       - ./logs:/app/logs
 
@@ -130,6 +129,18 @@ services:
         condition: service_started
     ports:
       - "8082:80"
+
+  gateway-lb:
+    image: nginx:alpine
+    restart: unless-stopped
+    depends_on:
+      gateway:
+        condition: service_started
+    volumes:
+      - ./docker/gateway-lb.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "3000:3000"
+      - "9000:9000"
 
 volumes:
   mysql-data:

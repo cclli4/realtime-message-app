@@ -77,3 +77,134 @@
 2025/11/25 10:41:21 WebSocket client disconnected. Remaining clients: 1
 2025/11/25 10:41:27 error payload:  websocket: close 1001 (going away)
 2025/11/25 10:41:27 WebSocket client disconnected. Remaining clients: 0
+2025/11/25 11:21:00 New WebSocket client connected. Total clients: 1
+2025/11/25 11:21:03 error payload:  websocket: close 1001 (going away)
+2025/11/25 11:21:03 WebSocket client disconnected. Remaining clients: 0
+2025/11/25 11:21:17 New WebSocket client connected. Total clients: 1
+2025/11/25 11:21:25 error payload:  websocket: close 1001 (going away)
+2025/11/25 11:21:25 WebSocket client disconnected. Remaining clients: 0
+2025/11/25 11:24:04 New WebSocket client connected. Total clients: 1
+2025/11/25 11:26:34 error payload:  websocket: close 1001 (going away)
+2025/11/25 11:26:34 WebSocket client disconnected. Remaining clients: 0
+2025/11/25 11:27:19 New WebSocket client connected. Total clients: 1
+2025/11/25 11:27:20 error payload:  websocket: close 1001 (going away)
+2025/11/25 11:27:20 WebSocket client disconnected. Remaining clients: 0
+2025/11/25 11:35:28 [OK] Connected to MySQL & migrated
+2025/11/25 11:35:28 [OK] Connected to MongoDB
+2025/11/25 11:35:28 [OK] MongoDB collection initialized: message_app.messages
+2025/11/25 11:35:28 Starting WebSocket server goroutine...
+2025/11/25 11:35:28 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:35:28 WebSocket server starting on 0.0.0.0:9000
+2025/11/25 11:35:28 WebSocket server configuration - Host: 0.0.0.0, Port: 9000
+2025/11/25 11:40:48 [OK] Connected to MySQL & migrated
+2025/11/25 11:40:48 [OK] Connected to MongoDB
+2025/11/25 11:40:48 [OK] MongoDB collection initialized: message_app.messages
+2025/11/25 11:40:48 Starting WebSocket server goroutine...
+2025/11/25 11:40:48 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:40:48 WebSocket server starting on 0.0.0.0:9000
+2025/11/25 11:40:48 WebSocket server configuration - Host: 0.0.0.0, Port: 9000
+2025/11/25 11:40:49 [OK] Connected to MySQL & migrated
+2025/11/25 11:40:49 [OK] Connected to MongoDB
+2025/11/25 11:40:49 [OK] MongoDB collection initialized: message_app.messages
+2025/11/25 11:40:49 Starting WebSocket server goroutine...
+2025/11/25 11:40:49 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:40:49 [MQTT] connection lost: EOF
+2025/11/25 11:40:49 WebSocket server starting on 0.0.0.0:9000
+2025/11/25 11:40:49 WebSocket server configuration - Host: 0.0.0.0, Port: 9000
+2025/11/25 11:40:49 [MQTT] connection lost: EOF
+2025/11/25 11:40:49 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:40:49 [MQTT] connection lost: EOF
+2025/11/25 11:40:49 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:40:50 [MQTT] connection lost: EOF
+2025/11/25 11:40:50 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:40:51 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:40:51 [MQTT] connection lost: EOF
+2025/11/25 11:40:53 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:40:53 [MQTT] connection lost: EOF
+2025/11/25 11:40:55 [MQTT] connection lost: EOF
+2025/11/25 11:40:55 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:40:59 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:40:59 [MQTT] connection lost: EOF
+2025/11/25 11:41:03 [MQTT] connection lost: EOF
+2025/11/25 11:41:03 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:11 [MQTT] connection lost: EOF
+2025/11/25 11:41:11 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:11 [MQTT] connection lost: EOF
+2025/11/25 11:41:11 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:21 [MQTT] connection lost: EOF
+2025/11/25 11:41:21 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:21 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:21 [MQTT] connection lost: EOF
+2025/11/25 11:41:31 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:31 [MQTT] connection lost: EOF
+2025/11/25 11:41:31 [MQTT] connection lost: EOF
+2025/11/25 11:41:31 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:41 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:41 [MQTT] connection lost: EOF
+2025/11/25 11:41:41 [MQTT] connection lost: EOF
+2025/11/25 11:41:41 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:51 [MQTT] connection lost: EOF
+2025/11/25 11:41:51 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:41:51 [MQTT] connection lost: EOF
+2025/11/25 11:41:51 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:01 [MQTT] connection lost: EOF
+2025/11/25 11:42:01 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:01 [MQTT] connection lost: EOF
+2025/11/25 11:42:01 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:11 [MQTT] connection lost: EOF
+2025/11/25 11:42:11 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:11 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:11 [MQTT] connection lost: EOF
+2025/11/25 11:42:21 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:21 [MQTT] connection lost: EOF
+2025/11/25 11:42:21 [MQTT] connection lost: EOF
+2025/11/25 11:42:21 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:31 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:31 [MQTT] connection lost: EOF
+2025/11/25 11:42:31 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:31 [MQTT] connection lost: EOF
+2025/11/25 11:42:41 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:41 [MQTT] connection lost: EOF
+2025/11/25 11:42:41 [MQTT] connection lost: EOF
+2025/11/25 11:42:41 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:51 [MQTT] connection lost: EOF
+2025/11/25 11:42:51 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:51 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:42:51 [MQTT] connection lost: EOF
+2025/11/25 11:43:01 [MQTT] connection lost: EOF
+2025/11/25 11:43:01 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:01 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:01 [MQTT] connection lost: EOF
+2025/11/25 11:43:11 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:11 [MQTT] connection lost: EOF
+2025/11/25 11:43:11 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:11 [MQTT] connection lost: EOF
+2025/11/25 11:43:21 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:21 [MQTT] connection lost: EOF
+2025/11/25 11:43:21 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:21 [MQTT] connection lost: EOF
+2025/11/25 11:43:31 [MQTT] connection lost: EOF
+2025/11/25 11:43:31 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:31 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:31 [MQTT] connection lost: EOF
+2025/11/25 11:43:41 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:41 [MQTT] connection lost: EOF
+2025/11/25 11:43:41 [MQTT] connection lost: EOF
+2025/11/25 11:43:41 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:51 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:43:51 [MQTT] connection lost: EOF
+2025/11/25 11:43:51 [MQTT] connection lost: EOF
+2025/11/25 11:43:51 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:44:00 New WebSocket client connected. Total clients: 1
+2025/11/25 11:44:01 [MQTT] connection lost: EOF
+2025/11/25 11:44:01 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:44:01 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:44:01 [MQTT] connection lost: EOF
+2025/11/25 11:44:11 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:44:11 [MQTT] connection lost: EOF
+2025/11/25 11:44:11 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:44:11 [MQTT] connection lost: EOF
+2025/11/25 11:44:21 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 11:44:21 [MQTT] connection lost: EOF
+2025/11/25 11:44:21 [MQTT] connection lost: EOF
+2025/11/25 11:44:21 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway

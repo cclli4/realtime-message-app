@@ -53,14 +53,15 @@ For local orchestration you can also run:
 ```bash
 docker compose up --build
 ```
-This brings up MySQL (published on host port `3307`), MongoDB, Redis, Mosquitto (with external listener configured via `docker/mosquitto.conf`), the gateway, persistence worker, notification worker, the query service, and a dedicated nginx frontend on `http://localhost:8082` as independent containers that communicate purely via MQTT/Redis/HTTP/DB.
+This brings up MySQL (published on host port `3307`), MongoDB, Redis, Mosquitto (with external listener configured via `docker/mosquitto.conf`), scalable gateway replicas (scale via `docker compose up -d --scale gateway=2`), an nginx load balancer on `http://localhost:3000` / `ws://localhost:9000`, persistence worker, notification worker, the query service, and a dedicated nginx frontend on `http://localhost:8082` as independent containers that communicate purely via MQTT/Redis/HTTP/DB.
 
 ## Service Map
 
 | Service | URL/Port | Purpose |
 |---------|----------|---------|
 | `chat-frontend` | `http://localhost:8082` | Static HTML/JS client served by nginx |
-| `chat-gateway` | `http://localhost:3000`, `ws://localhost:9000` | Auth + HTTP API + WebSocket publisher |
+| `gateway-lb` | `http://localhost:3000`, `ws://localhost:9000` | Nginx reverse proxy/load balancer forwarding to gateway replicas |
+| `gateway` | internal only (`expose 3000/9000`) | Auth + HTTP API + WebSocket publisher/subscriber (scale with `--scale gateway=N`) |
 | `chat-query-service` | `http://localhost:3100` | REST history + presence API |
 | `chat-mysql` | `localhost:3307` | Relational DB for users/sessions |
 | `chat-mongo` | `localhost:27017` | Message history store |

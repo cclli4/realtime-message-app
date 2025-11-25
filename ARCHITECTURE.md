@@ -221,7 +221,8 @@ Every binary under `cmd/` runs independently so the system keeps working even if
 | Service / Binary | Responsibility | Interfaces |
 |------------------|----------------|------------|
 | `chat-frontend` (nginx) | Serves static HTML/JS client from `views/` so UI can be scaled independently | Port `8082` HTTP |
-| `message-app` | HTTP API + WebSocket gateway, MQTT publisher/subscriber, Redis presence writer | Ports `3000`, `9000`; MQTT; Redis |
+| `gateway-lb` (nginx) | Reverse proxy that exposes ports `3000` and `9000` and load-balances requests to gateway replicas | Ports `3000`, `9000` |
+| `gateway` replicas | HTTP API + WebSocket gateway, MQTT publisher/subscriber, Redis presence writer | Internal ports `3000`, `9000`; MQTT; Redis (scale via `docker compose up -d --scale gateway=N`) |
 | `persistence-worker` | Subscribes to `MQTT_CHAT_TOPIC` and writes to MongoDB | MQTT ↔ MongoDB |
 | `notification-worker` | Subscribes to MQTT and triggers notification hooks / logs | MQTT |
 | `query-service` | REST API for `/messages` (Mongo) and `/presence/:user` (Redis) | Port `3100` HTTP |
