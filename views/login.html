@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Chat App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #718096;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .links a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: #5a67d8;
+        }
+
+        #login-status {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .success {
+            background: #c6f6d5;
+            color: #2f855a;
+        }
+
+        .error {
+            background: #fed7d7;
+            color: #c53030;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Welcome Back!</h1>
+        <p>Please sign in to continue</p>
+    </div>
+
+    <div id="login-status"></div>
+
+    <div class="form-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" placeholder="Username">
+    </div>
+
+    <div class="form-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password">
+    </div>
+
+    <button onclick="login()">Sign In</button>
+
+    <div class="links">
+<!--        <a href="register.html">Don't have an account? Register</a>-->
+        <a href="#" onclick="redirectToRegister(event)" class="link">Don't have an account? Register</a>
+    </div>
+</div>
+
+<script>
+    function redirectToRegister() {
+        fetch('/register', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Handle successful response here
+                    // For example, you can redirect to the registration page or handle data.
+                    window.location.href = "/register"; // Redirect if necessary
+                } else {
+                    // Handle errors here
+                    console.error('Failed to load register page');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function showDashboard(){
+        fetch('/home', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Handle successful response here
+                    // For example, you can redirect to the registration page or handle data.
+                    window.location.href = "/home"; // Redirect if necessary
+                } else {
+                    // Handle errors here
+                    console.error('Failed to load register page');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function setupWebSocket() {
+        socket = new WebSocket('ws://localhost:9000/message/v1/send');
+
+        socket.onopen = function(event) {
+            console.log('Connected to WebSocket server.');
+            fetchMessageHistory()
+            pendingMessages.forEach(message => {
+                socket.send(message);
+            });
+            pendingMessages = [];
+        };
+
+        socket.onmessage = function(event) {
+            const message = JSON.parse(event.data);
+            showNotification(message.from, message.message);
+            addMessageToChat(message.from, message.message);
+        };
+
+        socket.onclose = function(event) {
+            console.log('Disconnected from WebSocket server.');
+        };
+
+        socket.onerror = function(error) {
+            console.error('WebSocket error:', error);
+        };
+    }
+
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        fetch('/user/v1/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "success" && data.data.token) {
+                    sessionStorage.setItem('jwtToken', data.data.token);
+                    sessionStorage.setItem('refreshToken', data.data.refresh_token);
+                    sessionStorage.setItem('username', data.data.username);
+                    sessionStorage.setItem('fullname', data.data.full_name);
+                    document.getElementById('login-status').innerText = 'Login successful!';
+                    showDashboard();
+                    setupWebSocket();
+                } else {
+                    document.getElementById('login-status').innerText = 'Login failed!';
+                }
+            })
+            .catch(err => {
+                document.getElementById('login-status').innerText = 'Error during login';
+            });
+    }
+</script>
+</body>
+</html>

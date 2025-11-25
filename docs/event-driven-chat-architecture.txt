@@ -1,0 +1,73 @@
+Event-Driven Chat Application (Containerized)
+
+                 Web/Mobile Clients
+                         |
+                 HTTP (Frontend) / WebSocket
+                         v
+           +-------------------------------+
+           | Static Frontend (nginx)       |
+           |  - Serves HTML/JS bundle      |
+           |  - Calls gateway APIs         |
+           +-------------------------------+
+                         |
+                         v
+  +----------------------------------------------+
+  |        Gateway Service (containers x N)      |
+  |  - Auth & session validation                 |
+  |  - Maintains WS connections                  |
+  |  - Publishes send-message events to MQTT     |
+  +----------------------------------------------+
+            |                         |
+            | Presence / rate cache   | REST queries
+            v                         v
+    +------------------+    +----------------------+
+    | Redis / Cache    |    | Query API / GraphQL  |
+    +------------------+    +----------------------+
+            |
+            | publish / subscribe
+            v
+  +----------------------------------------------+
+  |   Event Broker Cluster (MQTT / NATS / etc.)  |
+  |  - Topics per room / user                    |
+  |  - Durable fan-out                           |
+  +----------------------------------------------+
+            |
+    +-------+-----------------------------+----------------------+
+    |                                                            |
+    v                                                            v
++-------------------+                                   +-------------------+
+| Persistence Worker|                                   | Notification Work.|
+| - Consume events  |                                   | - Push/email hooks|
+| - Write to DB     |                                   | - Trigger alerts  |
++-------------------+                                   +-------------------+
+            |                                                    |
+            v                                                    v
+     +--------------+                                External notification
+     |  Database    |                                 channels / webhooks
+     +--------------+
+            ^
+            |
+     read models / history fetch
+            ^
+            |
+  +----------------------------------------------+
+  |        Query Service               |
+  |  - REST/GraphQL chat history                 |
+  |  - Serves offline clients                    |
+  +----------------------------------------------+
+
+Optional observability stack (Vector/ELK) can be attached to each container
+to collect logs, metrics, traces; shared config via .env / secrets manager.
+
+Communication paradigm (publish-subscribe):
+
+- Clients send messages via WebSocket/HTTP to any gateway instance (publishers).
+- Gateways publish standardized events (e.g., `chat.message.sent`) to MQTT topics
+  that logically represent rooms/users; events are immutable and ordered per topic.
+- Specialized workers subscribe to those topics; each worker category focuses on a
+  concern (persist, notify, analytics) and can scale independently.
+- Gateways also subscribe to delivery topics (e.g., `chat.message.delivered`) to
+  push updates back to connected users in real time.
+- Since producers and consumers decouple through the broker, components can join
+  or leave without tight coupling—the broker buffers events and forwards them to
+  every subscriber holding the relevant routing key.

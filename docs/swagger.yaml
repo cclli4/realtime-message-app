@@ -1,0 +1,225 @@
+basePath: /
+definitions:
+  models.LoginRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.LoginResponse:
+    properties:
+      full_name:
+        type: string
+      refresh_token:
+        type: string
+      token:
+        type: string
+      username:
+        type: string
+    type: object
+  models.MessagePayload:
+    properties:
+      date:
+        type: string
+      from:
+        type: string
+      message:
+        type: string
+    type: object
+  models.User:
+    properties:
+      createdAt:
+        type: string
+      full_name:
+        minLength: 6
+        type: string
+      id:
+        type: integer
+      password:
+        minLength: 6
+        type: string
+      updatedAt:
+        type: string
+      username:
+        maxLength: 32
+        minLength: 6
+        type: string
+    required:
+    - full_name
+    - password
+    - username
+    type: object
+  response.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This project is a Realtime Chat Application built with Golang as the
+    backend, integrated with the ELK Stack (Elasticsearch, Logstash, Kibana) for logging,
+    monitoring, and visualization. The chat application supports real-time messaging
+    using WebSockets and stores logs for analytics and debugging
+  title: Realtime Chat Application with Go and ELK Stack
+  version: "1.0"
+paths:
+  /message/v1/history:
+    get:
+      description: Get All Messsage History
+      parameters:
+      - default: Bearer <token>
+        description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.MessagePayload'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      tags:
+      - Message
+  /message/v1/send:
+    post:
+      description: Send a message
+      parameters:
+      - default: Bearer <token>
+        description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Message Payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.MessagePayload'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.MessagePayload'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      tags:
+      - Message
+  /user/v1/login:
+    post:
+      consumes:
+      - application/json
+      description: User login
+      parameters:
+      - description: User Data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+      tags:
+      - User Authentication
+  /user/v1/logout:
+    delete:
+      description: Logout
+      parameters:
+      - default: Bearer <token>
+        description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      tags:
+      - User Authentication
+  /user/v1/refresh-token:
+    put:
+      description: Refresh Token
+      parameters:
+      - default: Bearer <token>
+        description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            properties:
+              token:
+                type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      tags:
+      - User Authentication
+  /user/v1/register:
+    post:
+      consumes:
+      - application/json
+      description: Register a new user
+      parameters:
+      - description: User Data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: User Created Successfully
+          schema:
+            $ref: '#/definitions/models.User'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      tags:
+      - User Authentication
+swagger: "2.0"

@@ -1,0 +1,136 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: chat-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+      MYSQL_DATABASE: message_app
+      MYSQL_USER: message_user
+      MYSQL_PASSWORD: pass123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-prootpass123"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mongo:
+    image: mongo:6
+    container_name: chat-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: message_app
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ping:1})"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: chat-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  mqtt-broker:
+    image: eclipse-mosquitto:2
+    container_name: chat-mqtt
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001" # optional WebSocket listener
+    volumes:
+      - ./docker/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    healthcheck:
+      test: ["CMD", "mosquitto_pub", "-h", "localhost", "-p", "1883", "-t", "healthcheck", "-m", "ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  gateway:
+    build: .
+    container_name: chat-gateway
+    command: ["./message-app"]
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      mqtt-broker:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+      - "9000:9000"
+    volumes:
+      - ./logs:/app/logs
+
+  persistence-worker:
+    build: .
+    container_name: chat-persistence-worker
+    command: ["./persistence-worker"]
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+      mqtt-broker:
+        condition: service_healthy
+
+  notification-worker:
+    build: .
+    container_name: chat-notification-worker
+    command: ["./notification-worker"]
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      mqtt-broker:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+
+  query-service:
+    build: .
+    container_name: chat-query-service
+    command: ["./query-service"]
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      mqtt-broker:
+        condition: service_healthy
+    ports:
+      - "3100:3100"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: chat-frontend
+    restart: unless-stopped
+    depends_on:
+      gateway:
+        condition: service_started
+    ports:
+      - "8082:80"
+
+volumes:
+  mysql-data:
+  mongo-data:

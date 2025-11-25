@@ -1,0 +1,79 @@
+2025/11/25 10:18:19 [OK] Connected to MySQL & migrated
+2025/11/25 10:18:19 [OK] Connected to MongoDB
+2025/11/25 10:18:19 [OK] MongoDB collection initialized: message_app.messages
+2025/11/25 10:18:19 Starting WebSocket server goroutine...
+2025/11/25 10:18:19 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 10:18:19 WebSocket server starting on 0.0.0.0:9000
+2025/11/25 10:18:19 WebSocket server configuration - Host: 0.0.0.0, Port: 9000
+2025/11/25 10:18:20 New WebSocket client connected. Total clients: 1
+2025/11/25 10:18:20 failed to get user session on DB:  record not found
+2025/11/25 10:18:20 New WebSocket client connected. Total clients: 2
+2025/11/25 10:23:52 [WARN] failed to connect MySQL (attempt 1/5): dial tcp 172.20.0.3:3306: connect: connection refused
+2025/11/25 10:23:53 [WARN] failed to connect MySQL (attempt 2/5): dial tcp 172.20.0.3:3306: connect: connection refused
+2025/11/25 10:23:55 [WARN] failed to connect MySQL (attempt 3/5): dial tcp 172.20.0.3:3306: connect: connection refused
+2025/11/25 10:23:58 [OK] Connected to MySQL & migrated
+2025/11/25 10:23:58 [OK] Connected to MongoDB
+2025/11/25 10:23:58 [OK] MongoDB collection initialized: message_app.messages
+2025/11/25 10:23:58 Starting WebSocket server goroutine...
+2025/11/25 10:23:58 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 10:23:58 WebSocket server starting on 0.0.0.0:9000
+2025/11/25 10:23:58 WebSocket server configuration - Host: 0.0.0.0, Port: 9000
+2025/11/25 10:24:02 New WebSocket client connected. Total clients: 1
+2025/11/25 10:24:02 failed to get user session on DB:  record not found
+2025/11/25 10:24:03 New WebSocket client connected. Total clients: 2
+2025/11/25 10:24:03 failed to get user session on DB:  record not found
+2025/11/25 10:27:46 [OK] Connected to MySQL & migrated
+2025/11/25 10:27:46 [OK] Connected to MongoDB
+2025/11/25 10:27:46 [OK] MongoDB collection initialized: message_app.messages
+2025/11/25 10:27:46 Starting WebSocket server goroutine...
+2025/11/25 10:27:46 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 10:27:46 WebSocket server starting on 0.0.0.0:9000
+2025/11/25 10:27:46 WebSocket server configuration - Host: 0.0.0.0, Port: 9000
+2025/11/25 10:27:46 New WebSocket client connected. Total clients: 1
+2025/11/25 10:27:46 New WebSocket client connected. Total clients: 2
+2025/11/25 10:27:46 failed to get user session on DB:  record not found
+2025/11/25 10:27:46 failed to get user session on DB:  record not found
+2025/11/25 10:34:07 error payload:  websocket: close 1001 (going away)
+2025/11/25 10:34:07 WebSocket client disconnected. Remaining clients: 1
+2025/11/25 10:34:15 error payload:  websocket: close 1001 (going away)
+2025/11/25 10:34:15 WebSocket client disconnected. Remaining clients: 0
+2025/11/25 10:34:30 New WebSocket client connected. Total clients: 1
+2025/11/25 10:34:30 failed to get user session on DB:  record not found
+2025/11/25 10:34:34 [OK] Connected to MySQL & migrated
+2025/11/25 10:34:34 [OK] Connected to MongoDB
+2025/11/25 10:34:34 [OK] MongoDB collection initialized: message_app.messages
+2025/11/25 10:34:34 Starting WebSocket server goroutine...
+2025/11/25 10:34:34 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 10:34:34 WebSocket server starting on 0.0.0.0:9000
+2025/11/25 10:34:34 WebSocket server configuration - Host: 0.0.0.0, Port: 9000
+2025/11/25 10:34:35 New WebSocket client connected. Total clients: 1
+2025/11/25 10:34:35 failed to get user session on DB:  record not found
+2025/11/25 10:34:39 failed to get user session on DB:  record not found
+2025/11/25 10:34:39 failed to get user session on DB:  record not found
+2025/11/25 10:34:41 failed to get user session on DB:  record not found
+2025/11/25 10:34:42 failed to get user session on DB:  record not found
+2025/11/25 10:39:15 [OK] Connected to MySQL & migrated
+2025/11/25 10:39:15 [OK] Connected to MongoDB
+2025/11/25 10:39:15 [OK] MongoDB collection initialized: message_app.messages
+2025/11/25 10:39:15 Starting WebSocket server goroutine...
+2025/11/25 10:39:15 [MQTT] connected to tcp://mqtt-broker:1883 as chat-gateway
+2025/11/25 10:39:15 WebSocket server starting on 0.0.0.0:9000
+2025/11/25 10:39:15 WebSocket server configuration - Host: 0.0.0.0, Port: 9000
+2025/11/25 10:39:18 New WebSocket client connected. Total clients: 1
+2025/11/25 10:39:18 failed to get user session on DB:  record not found
+2025/11/25 10:40:42 New WebSocket client connected. Total clients: 2
+2025/11/25 10:40:47 error payload:  websocket: close 1001 (going away)
+2025/11/25 10:40:47 WebSocket client disconnected. Remaining clients: 1
+2025/11/25 10:40:48 New WebSocket client connected. Total clients: 2
+2025/11/25 10:40:48 failed to get user session on DB:  record not found
+2025/11/25 10:40:49 failed to get user session on DB:  record not found
+2025/11/25 10:40:49 failed to get user session on DB:  record not found
+2025/11/25 10:40:51 failed to get user session on DB:  record not found
+2025/11/25 10:40:53 failed to get user session on DB:  record not found
+2025/11/25 10:41:05 error payload:  websocket: close 1001 (going away)
+2025/11/25 10:41:05 WebSocket client disconnected. Remaining clients: 1
+2025/11/25 10:41:17 New WebSocket client connected. Total clients: 2
+2025/11/25 10:41:21 error payload:  websocket: close 1001 (going away)
+2025/11/25 10:41:21 WebSocket client disconnected. Remaining clients: 1
+2025/11/25 10:41:27 error payload:  websocket: close 1001 (going away)
+2025/11/25 10:41:27 WebSocket client disconnected. Remaining clients: 0
